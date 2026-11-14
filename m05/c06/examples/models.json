@@ -1,0 +1,25 @@
+{
+  "accessed": "2026-11-14",
+  "sources": {
+    "config": "https://huggingface.co/Qwen/<name>/resolve/main/config.json",
+    "params": "https://huggingface.co/api/models/Qwen/<name> (field safetensors.total)",
+    "card": "https://huggingface.co/Qwen/<name>"
+  },
+  "models": {
+    "qwen3-1.7b": {"hf": "Qwen/Qwen3-1.7B", "hidden_size": 2048, "layers": 28, "heads": 16, "kv_heads": 8, "head_dim": 128, "intermediate": 6144, "vocab": 151936, "tie_embeddings": true, "published_params": 2031739904, "native_ctx": 32768},
+    "qwen3-8b": {"hf": "Qwen/Qwen3-8B", "hidden_size": 4096, "layers": 36, "heads": 32, "kv_heads": 8, "head_dim": 128, "intermediate": 12288, "vocab": 151936, "tie_embeddings": false, "published_params": 8190735360, "native_ctx": 32768},
+    "qwen3-32b": {"hf": "Qwen/Qwen3-32B", "hidden_size": 5120, "layers": 64, "heads": 64, "kv_heads": 8, "head_dim": 128, "intermediate": 25600, "vocab": 151936, "tie_embeddings": false, "published_params": 32762123264, "native_ctx": 32768}
+  },
+  "quant_bits_per_weight": {
+    "bf16": 16.0,
+    "int4": 4.5,
+    "q4_k_m": 5.33
+  },
+  "assumptions": {
+    "runtime_overhead_gib": 1.0,
+    "memory_utilization": 0.9,
+    "batched_tokens": 4096,
+    "concurrent_sequences": 8,
+    "gpu_gib": {"24 GB class (L4, A10G)": 24, "80 GB class (H100)": 80}
+  }
+}

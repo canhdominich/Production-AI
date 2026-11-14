@@ -1,0 +1,5 @@
+[gate]
+max_drop = 0.05
+max_category_drop = 0.17
+min_cases = 60
+min_pass = 0.80

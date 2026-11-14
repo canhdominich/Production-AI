@@ -1,0 +1,6 @@
+*
+!platform/*.py
+!data/*.json
+!c04/stack/pyproject.toml
+!c04/stack/uv.lock
+!c04/stack/app/*.py

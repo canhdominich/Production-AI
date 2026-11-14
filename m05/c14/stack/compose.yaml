@@ -1,0 +1,7 @@
+name: m05c14
+services:
+  promtool:
+    image: prom/prometheus:v3.15.1
+    entrypoint: ["promtool"]
+    volumes:
+      - ../rules:/rules

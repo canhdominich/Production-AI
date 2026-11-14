@@ -1,0 +1,90 @@
+{"id": "E001", "category": "change_address", "question": "muon chuyen don at047838 sang khu ben song", "expected": "change_address"}
+{"id": "E002", "category": "other", "question": "ma giam gia hom nay con dung duoc khong", "expected": "other"}
+{"id": "E003", "category": "refund", "question": "hang vo roi, cho toi xin lai tien", "expected": "refund"}
+{"id": "E004", "category": "refund", "question": "đơn AT036959 trễ quá, hủy đi và trả lại tiền cho tôi", "expected": "refund"}
+{"id": "E005", "category": "change_address", "question": "tôi chuyển nhà sang Chợ Mới, cập nhật địa chỉ đơn AT042046", "expected": "change_address"}
+{"id": "E006", "category": "refund", "question": "hoan tien ve vi hay ve ngan hang vay", "expected": "refund"}
+{"id": "E007", "category": "change_address", "question": "Giao tới Tạp Hóa Cô Tấm thay vì địa chỉ cũ được ko", "expected": "change_address"}
+{"id": "E008", "category": "other", "question": "shop có giao hàng ở Bến Sông không", "expected": "other"}
+{"id": "E009", "category": "complaint_late", "question": "hen gaio trong 1 tieng ma gio da gan 2 tieng", "expected": "complaint_late"}
+{"id": "E010", "category": "refund", "question": "Yêu cầu hoàn tiền vì đơn AT015074 bị thất lạc", "expected": "refund"}
+{"id": "E011", "category": "change_address", "question": "Tôi chuyển nhà sang Đầu Phố, cập nhật địa chỉ đơn AT006943", "expected": "change_address"}
+{"id": "E012", "category": "eta", "question": "tam may gio thi don toi khu khu cong nghiep vay shop", "expected": "eta"}
+{"id": "E013", "category": "order_status", "question": "đơn AT000512 đã được shipper lấy chưa hay vẫn nằm ở shop", "expected": "order_status"}
+{"id": "E014", "category": "eta", "question": "đơn AT006534 hôm nay có giao ko hay để mai", "expected": "eta"}
+{"id": "E015", "category": "order_status", "question": "kiểm tra giúp em đơn AT025244 với ạ", "expected": "order_status"}
+{"id": "E016", "category": "change_address", "question": "minh nhap sai phuong, doi giup sang xom vui", "expected": "change_address"}
+{"id": "E017", "category": "eta", "question": "Thời gian giao dự kiến của đơn AT027467 là bao nhiêu", "expected": "eta"}
+{"id": "E018", "category": "eta", "question": "Đơn AT046354 khoảng mấy phút nữa thì tới", "expected": "eta"}
+{"id": "E019", "category": "refund", "question": "Hàng bị ướt do mưa, tôi muốn được bồi hoàn", "expected": "refund"}
+{"id": "E020", "category": "refund", "question": "don bi giao that bai, xin hoan lai phi ship", "expected": "refund"}
+{"id": "E021", "category": "complaint_late", "question": "đơn hỏa tốc mà trễ 45 phút, thất vọng quá", "expected": "complaint_late"}
+{"id": "E022", "category": "complaint_late", "question": "đơn AT036804 để quá giờ hẹn, đồ ăn nguội hết rồi", "expected": "complaint_late"}
+{"id": "E023", "category": "order_status", "question": "Đơn AT034808 đã thanh toán chưa, app hiện chờ xác nhận", "expected": "order_status"}
+{"id": "E024", "category": "refund", "question": "toi bi tinh phi sai, de nghi hoan lai phan chenh", "expected": "refund"}
+{"id": "E025", "category": "order_status", "question": "cho minh hoi tinh trang don at006048", "expected": "order_status"}
+{"id": "E026", "category": "order_status", "question": "hàng của mình đã tới kho Bãi Biển chưa", "expected": "order_status"}
+{"id": "E027", "category": "refund", "question": "shop oi tra lai tien coc don at046486 giup em", "expected": "refund"}
+{"id": "E028", "category": "refund", "question": "Đơn AT002381 trễ quá, hủy đi và trả lại tiền cho tôi", "expected": "refund"}
+{"id": "E029", "category": "order_status", "question": "Đơn của em sao vẫn báo đng xử lý từ hôm qua", "expected": "order_status"}
+{"id": "E030", "category": "order_status", "question": "don cua em sao van bao dang xu ly tu hom qua", "expected": "order_status"}
+{"id": "E031", "category": "eta", "question": "Giao từ Chung Cư Xóm Vui tới Khu Công Nghiệp mất bao lâu", "expected": "eta"}
+{"id": "E032", "category": "eta", "question": "bao giờ shipper bắt đầu giao đơn AT047101", "expected": "eta"}
+{"id": "E033", "category": "refund", "question": "thanh toán thừa 50 nghìn, trả lại giúp mình", "expected": "refund"}
+{"id": "E034", "category": "complaint_late", "question": "gaio trễ làm tôi lỡ cuộc họp, rất bực", "expected": "complaint_late"}
+{"id": "E035", "category": "eta", "question": "Tôi đi vắng lúc 17 giờ, đơn có tới trước giờ đó không", "expected": "eta"}
+{"id": "E036", "category": "complaint_late", "question": "don hoa toc ma tre 50 phut, tht vong qua", "expected": "complaint_late"}
+{"id": "E037", "category": "eta", "question": "Bao lâu nữa thì hàng tới vậy hsop", "expected": "eta"}
+{"id": "E038", "category": "change_address", "question": "Giao tới Tạp Hóa Cô Tấm thay vì địa chỉ cũ dc không", "expected": "change_address"}
+{"id": "E039", "category": "order_status", "question": "Sao đơn AT035343 cứ báo đang trung chuyển mãi vậy", "expected": "order_status"}
+{"id": "E040", "category": "complaint_late", "question": "toi da doi o ca phe chu tu 40 phut ma shipper chua den", "expected": "complaint_late"}
+{"id": "E041", "category": "change_address", "question": "em ghi nầhm số nhà, sửa giúp em với", "expected": "change_address"}
+{"id": "E042", "category": "complaint_late", "question": "minh rat ko hai long vi don at005172 tre hen", "expected": "complaint_late"}
+{"id": "E043", "category": "refund", "question": "yeu cau hoan tien vi don at033247 bi that lac", "expected": "refund"}
+{"id": "E044", "category": "order_status", "question": "don at035791 bao da giao nhung toi chua nhan duoc gi", "expected": "order_status"}
+{"id": "E045", "category": "eta", "question": "Mai mấy giờ thì giao đơn AT041847 ạ", "expected": "eta"}
+{"id": "E046", "category": "other", "question": "phi ship di dau pho la bao nhieu", "expected": "other"}
+{"id": "E047", "category": "other", "question": "ung dung bi loi, khong dang nhap duoc", "expected": "other"}
+{"id": "E048", "category": "complaint_late", "question": "trời không mưa mà vẫn giao trễ 25 phút là sao", "expected": "complaint_late"}
+{"id": "E049", "category": "change_address", "question": "mình nhập sai phường, đổi giúp sang Đầu Phố", "expected": "change_address"}
+{"id": "E050", "category": "order_status", "question": "don at023012 da roi kho chua a", "expected": "order_status"}
+{"id": "E051", "category": "other", "question": "làm sao để tạo đơn mới rtên app", "expected": "other"}
+{"id": "E052", "category": "order_status", "question": "don at041943 da roi kho chua a", "expected": "order_status"}
+{"id": "E053", "category": "complaint_late", "question": "da qua gio hen 30 phut, shipper khong goi cung khong toi", "expected": "complaint_late"}
+{"id": "E054", "category": "change_address", "question": "cập nhật lại địa chỉ: giao tới Nhà Sách Ông Đồ", "expected": "change_address"}
+{"id": "E055", "category": "order_status", "question": "Cho hỏi đơn AT015642 đã giao thành công chưa vậy", "expected": "order_status"}
+{"id": "E056", "category": "complaint_late", "question": "giao trễ làm tôi lỡ cuộc họp, rất bực", "expected": "complaint_late"}
+{"id": "E057", "category": "order_status", "question": "app bao don at043576 giao that bai la sao a", "expected": "order_status"}
+{"id": "E058", "category": "order_status", "question": "đơn AT044596 có bị hủy không, sao không thấy cập nhật gì", "expected": "order_status"}
+{"id": "E059", "category": "eta", "question": "don at029736 hom nay co giao ko hay de mai", "expected": "eta"}
+{"id": "E060", "category": "refund", "question": "hoan tien ve vi hay ve ngan hang v", "expected": "refund"}
+{"id": "E061", "category": "change_address", "question": "Tôi chyuển nhà sang Bãi Biển, cập nhật địa chỉ đơn AT049158", "expected": "change_address"}
+{"id": "E062", "category": "change_address", "question": "imnh nhap sai phuong, doi giup sang xom vui", "expected": "change_address"}
+{"id": "E063", "category": "eta", "question": "don at005271 hom nay co giao khong hay de mai", "expected": "eta"}
+{"id": "E064", "category": "other", "question": "co thu ho tien hang khong, phi bao nhieu", "expected": "other"}
+{"id": "E065", "category": "order_status", "question": "don hang at042123 da lay hang chua shop?", "expected": "order_status"}
+{"id": "E066", "category": "complaint_late", "question": "đơn AT015451 để quá giờ hẹn, đồ ăn nguội hết rồi", "expected": "complaint_late"}
+{"id": "E067", "category": "other", "question": "toi muon dng ky lam tai xe xe tai", "expected": "other"}
+{"id": "E068", "category": "refund", "question": "Đơn AT029170 trễ quá, hủy đi và trả lại tiền cho tôi", "expected": "refund"}
+{"id": "E069", "category": "change_address", "question": "toi viet sai ten duong, sua lai dia chi don at035217", "expected": "change_address"}
+{"id": "E070", "category": "change_address", "question": "nhờ shipper giao qua nhà hàng xóm số 30 được không", "expected": "change_address"}
+{"id": "E071", "category": "refund", "question": "toi muon hoan tien don at002040", "expected": "refund"}
+{"id": "E072", "category": "change_address", "question": "thay doi dia chi giao don at038810, toi khong co nha hom nay", "expected": "change_address"}
+{"id": "E073", "category": "other", "question": "phí ship đi Cầu Gỗ là bao nhiêu", "expected": "other"}
+{"id": "E074", "category": "change_address", "question": "cho mình đổi địa chỉ giao đơn AT026813 sang Khu Công Nghiệp", "expected": "change_address"}
+{"id": "E075", "category": "other", "question": "tôi muốn đăng ký làm tài xế xe tải", "expected": "other"}
+{"id": "E076", "category": "refund", "question": "Thanh toán thừa 90 nghìn, trả lại giúp mình", "expected": "refund"}
+{"id": "E077", "category": "complaint_late", "question": "đơn AT005192 trễ 90 phút rồi mà vẫn chưa thấy đâu", "expected": "complaint_late"}
+{"id": "E078", "category": "complaint_late", "question": "báo giao trước 16 giờ mà giờ đã quá 16 giờ rồi", "expected": "complaint_late"}
+{"id": "E079", "category": "eta", "question": "Đơn AT004934 hôm nay có giao không hay để mai", "expected": "eta"}
+{"id": "E080", "category": "eta", "question": "minh can hang truoc 10 gio, don at006588 co kip khong", "expected": "eta"}
+{"id": "E081", "category": "eta", "question": "có kịp giao trong buổi trưa nay không", "expected": "eta"}
+{"id": "E082", "category": "eta", "question": "đơn hỏa tốc đi Đầu Phố thì bao lâu nhận được", "expected": "eta"}
+{"id": "E083", "category": "other", "question": "muon hop tac giao hang cho ca phe chu tu thi lien he ai", "expected": "other"}
+{"id": "E084", "category": "complaint_late", "question": "đã quá giờ hẹn 20 phút, shipper không gọi cũng không tới", "expected": "complaint_late"}
+{"id": "E085", "category": "other", "question": "văn phòng ở Chợ Mới nằm chỗ nào vậy", "expected": "other"}
+{"id": "E086", "category": "complaint_late", "question": "chậm quá, đơn AT007498 cam kết 60 phút mà giờ chưa tới", "expected": "complaint_late"}
+{"id": "E087", "category": "other", "question": "ben minh co giao thuoc khong a", "expected": "other"}
+{"id": "E088", "category": "other", "question": "Shop có giao hàng ở Chợ Mới không", "expected": "other"}
+{"id": "E089", "category": "other", "question": "Shipper hôm nay rất dễ thương, khen một câu", "expected": "other"}
+{"id": "E090", "category": "other", "question": "xuat hoa don cong ty thi lam the nao", "expected": "other"}

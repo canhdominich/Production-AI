@@ -1,0 +1,20 @@
+{$SITE_ADDRESS} {
+	encode zstd gzip
+
+	request_body {
+		max_size 1MB
+	}
+
+	reverse_proxy api:8000 {
+		health_uri /ready
+		health_interval 10s
+		transport http {
+			response_header_timeout 120s
+		}
+	}
+
+	log {
+		output stdout
+		format json
+	}
+}

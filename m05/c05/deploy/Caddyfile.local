@@ -1,0 +1,15 @@
+{
+	http_port 5652
+	https_port 5651
+	admin off
+}
+
+localhost:5651 {
+	tls internal
+
+	request_body {
+		max_size 1MB
+	}
+
+	reverse_proxy 127.0.0.1:5650
+}

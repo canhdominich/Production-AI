@@ -1,0 +1,34 @@
+{
+ "1|Đơn standard trễ 40 phút, giao ngày 05/12/2026. Khách có được bồi thường không?": {
+  "text": "Có, khách có được bồi thường vì ngưỡng trễ được điều chỉnh từ 30 phút lên 45 phút trong khoảng thời gian từ 01/11/2026 đến 15/12/2026.",
+  "seconds": 18.2
+ },
+ "1|Đơn express trễ 35 phút, giao ngày 20/11/2026. Khách có được bồi thường không?": {
+  "text": "Đơn express trễ 35 phút, giao ngày 20/11/2026: **Không được bồi thường**, vì ngưỡng trễ để được bồi thường là 15/12/2026.",
+  "seconds": 11.0
+ },
+ "1|Hàng không khai báo giá trị được bồi thường tối đa bao nhiêu mỗi đơn?": {
+  "text": "Tối đa 500.000 đồng mỗi đơn.",
+  "seconds": 10.3
+ },
+ "1|Voucher có hạn dùng bao lâu?": {
+  "text": "Voucher có hạn dùng 60 ngày.",
+  "seconds": 6.3
+ },
+ "3|Đơn standard trễ 40 phút, giao ngày 05/12/2026. Khách có được bồi thường không?": {
+  "text": "Có, khách được bồi thường.",
+  "seconds": 14.4
+ },
+ "3|Đơn express trễ 35 phút, giao ngày 20/11/2026. Khách có được bồi thường không?": {
+  "text": "Có, khách được bồi thường.",
+  "seconds": 5.0
+ },
+ "3|Hàng không khai báo giá trị được bồi thường tối đa bao nhiêu mỗi đơn?": {
+  "text": "Tối đa 500.000 đồng mỗi đơn.",
+  "seconds": 12.0
+ },
+ "3|Voucher có hạn dùng bao lâu?": {
+  "text": "Voucher có hạn dùng 60 ngày.",
+  "seconds": 9.2
+ }
+}

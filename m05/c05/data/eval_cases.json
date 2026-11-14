@@ -1,0 +1,201 @@
+{
+ "cases": [
+  {
+   "id": "status-1",
+   "category": "status",
+   "question": "Đơn AT-1001 của em đang ở đâu?",
+   "must_contain": "25 phút"
+  },
+  {
+   "id": "status-2",
+   "category": "status",
+   "question": "Shipper tên gì và gọi số nào?",
+   "must_contain": "màn hình theo dõi"
+  },
+  {
+   "id": "status-3",
+   "category": "status",
+   "question": "Đơn của em bị kẹt ở bước chờ quán 40 phút rồi.",
+   "must_contain": "30 phút"
+  },
+  {
+   "id": "status-4",
+   "category": "status",
+   "question": "Em muốn xem lịch sử các đơn tháng trước.",
+   "must_contain": "12 tháng"
+  },
+  {
+   "id": "status-5",
+   "category": "status",
+   "question": "Vì sao đơn báo đã giao mà em chưa nhận?",
+   "must_contain": "24 giờ"
+  },
+  {
+   "id": "status-6",
+   "category": "status",
+   "question": "App có báo khi shipper tới gần không?",
+   "must_contain": "300 mét"
+  },
+  {
+   "id": "refund-1",
+   "category": "refund",
+   "question": "Em hủy đơn thì bao lâu được hoàn tiền?",
+   "must_contain": "7 ngày làm việc"
+  },
+  {
+   "id": "refund-2",
+   "category": "refund",
+   "question": "Món giao sai thì em xin hoàn tiền thế nào?",
+   "must_contain": "hoàn toàn bộ"
+  },
+  {
+   "id": "refund-3",
+   "category": "refund",
+   "question": "Em trả tiền mặt thì hoàn tiền kiểu gì?",
+   "must_contain": "ví của bạn"
+  },
+  {
+   "id": "refund-4",
+   "category": "refund",
+   "question": "Đơn giảm giá thì hoàn bao nhiêu?",
+   "must_contain": "số tiền đã thực trả"
+  },
+  {
+   "id": "refund-5",
+   "category": "refund",
+   "question": "Có hoàn phí giao hàng không?",
+   "must_contain": "lỗi do Giao Hàng Anh Tí"
+  },
+  {
+   "id": "refund-6",
+   "category": "refund",
+   "question": "Em xin hoàn tiền muộn 10 ngày được không?",
+   "must_contain": "trong 3 ngày"
+  },
+  {
+   "id": "address-1",
+   "category": "address",
+   "question": "Em đổi địa chỉ giao sau khi đặt được không?",
+   "must_contain": "trước khi shipper lấy hàng"
+  },
+  {
+   "id": "address-2",
+   "category": "address",
+   "question": "Đổi sang quận khác có tính thêm phí không?",
+   "must_contain": "tính lại"
+  },
+  {
+   "id": "address-3",
+   "category": "address",
+   "question": "Em ghi sai số nhà thì sửa ở đâu?",
+   "must_contain": "Chi tiết đơn"
+  },
+  {
+   "id": "address-4",
+   "category": "address",
+   "question": "Em muốn lưu thêm địa chỉ cơ quan.",
+   "must_contain": "tối đa 5 địa chỉ"
+  },
+  {
+   "id": "address-5",
+   "category": "address",
+   "question": "Shipper không tìm thấy hẻm nhà em.",
+   "must_contain": "ghim vị trí"
+  },
+  {
+   "id": "address-6",
+   "category": "address",
+   "question": "Giao tới tầng 12 chung cư được không?",
+   "must_contain": "sảnh chung cư"
+  },
+  {
+   "id": "fee-1",
+   "category": "fee",
+   "question": "Phí giao trong cùng quận là bao nhiêu?",
+   "must_contain": "15.000 đồng"
+  },
+  {
+   "id": "fee-2",
+   "category": "fee",
+   "question": "Giao sang quận bên cạnh phí bao nhiêu?",
+   "must_contain": "22.000 đồng"
+  },
+  {
+   "id": "fee-3",
+   "category": "fee",
+   "question": "Đơn trên bao nhiêu thì miễn phí giao?",
+   "must_contain": "200.000 đồng"
+  },
+  {
+   "id": "fee-4",
+   "category": "fee",
+   "question": "Mưa to có phụ thu không?",
+   "must_contain": "5.000 đồng"
+  },
+  {
+   "id": "fee-5",
+   "category": "fee",
+   "question": "Đặt giờ cao điểm có đắt hơn không?",
+   "must_contain": "không phụ thu"
+  },
+  {
+   "id": "fee-6",
+   "category": "fee",
+   "question": "Em có thể trả phí giao bằng điểm tích lũy không?",
+   "must_contain": "mỗi 1.000 điểm"
+  }
+ ],
+ "facts": {
+  "status-1": "Đơn đang ở bước lấy hàng tại bếp, dự kiến giao trong 25 phút.",
+  "status-2": "Bạn xem tên và số của shipper ngay trong màn hình theo dõi đơn.",
+  "status-3": "Quá 30 phút chờ quán, hệ thống tự báo nhân viên hỗ trợ gọi lại cho bạn.",
+  "status-4": "Lịch sử đơn lưu 12 tháng trong mục Tài khoản, phần Đơn đã đặt.",
+  "status-5": "Hãy báo trong 24 giờ để nhân viên đối chiếu vị trí giao của shipper.",
+  "status-6": "Ứng dụng gửi thông báo khi shipper còn cách bạn 300 mét.",
+  "refund-1": "Tiền được hoàn trong 7 ngày làm việc về đúng phương thức đã thanh toán.",
+  "refund-2": "Chụp ảnh món giao sai và gửi trong mục Hỗ trợ, bạn được hoàn toàn bộ giá món.",
+  "refund-3": "Đơn trả tiền mặt được hoàn vào ví của bạn trong ứng dụng.",
+  "refund-4": "Bạn được hoàn đúng số tiền đã thực trả, không tính phần giảm giá.",
+  "refund-5": "Phí giao hàng chỉ được hoàn khi lỗi do Giao Hàng Anh Tí.",
+  "refund-6": "Yêu cầu hoàn tiền phải gửi trong 3 ngày kể từ khi nhận đơn.",
+  "address-1": "Bạn đổi được địa chỉ trước khi shipper lấy hàng, trong mục Chi tiết đơn.",
+  "address-2": "Đổi sang quận khác thì phí giao được tính lại theo quận mới.",
+  "address-3": "Sửa số nhà trong mục Chi tiết đơn hoặc gọi số hỗ trợ 1900 0000.",
+  "address-4": "Thêm địa chỉ mới trong mục Sổ địa chỉ, lưu được tối đa 5 địa chỉ.",
+  "address-5": "Bạn ghim vị trí trên bản đồ để shipper đi đúng hẻm.",
+  "address-6": "Shipper giao tới sảnh chung cư, bạn xuống nhận tại sảnh.",
+  "fee-1": "Giao trong cùng quận phí 15.000 đồng.",
+  "fee-2": "Giao sang quận liền kề phí 22.000 đồng.",
+  "fee-3": "Đơn từ 200.000 đồng được miễn phí giao trong cùng quận.",
+  "fee-4": "Khi mưa lớn, phụ thu tối đa 5.000 đồng và hiện rõ trước khi bạn đặt.",
+  "fee-5": "Giờ cao điểm 11 giờ đến 13 giờ không phụ thu thêm.",
+  "fee-6": "Bạn dùng điểm tích lũy để trừ phí giao, mỗi 1.000 điểm trừ 1.000 đồng."
+ },
+ "versions": {
+  "v1": {
+   "label": "prompt hiện tại trên main",
+   "missing": [
+    "address-4",
+    "fee-6"
+   ]
+  },
+  "v2": {
+   "label": "PR 41: rút gọn prompt, bỏ phần chính sách hoàn tiền",
+   "missing": [
+    "address-4",
+    "fee-6",
+    "refund-2",
+    "refund-4",
+    "refund-5"
+   ]
+  },
+  "v3": {
+   "label": "PR 42: thêm sổ địa chỉ và điểm tích lũy, gọn phần hoàn tiền",
+   "missing": [
+    "refund-2",
+    "refund-4",
+    "refund-5"
+   ]
+  }
+ }
+}

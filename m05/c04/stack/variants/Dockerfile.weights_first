@@ -1,0 +1,4 @@
+FROM python:3.12-slim
+WORKDIR /srv
+COPY weights/model.bin /models/model.bin
+COPY app /srv/app

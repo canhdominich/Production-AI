@@ -1,0 +1,127 @@
+name: m05c15
+
+x-image: &app
+  image: m05c15-platform:1
+  restart: unless-stopped
+
+services:
+  caddy:
+    image: caddy:2-alpine
+    restart: unless-stopped
+    environment:
+      SITE_ADDRESS: ${SITE_ADDRESS:-localhost}
+    volumes:
+      - ./Caddyfile:/etc/caddy/Caddyfile:ro
+      - caddydata:/data
+    ports:
+      - "${HTTP_PORT:-80}:80"
+      - "${HTTPS_PORT:-443}:443"
+    depends_on:
+      api:
+        condition: service_healthy
+
+  api:
+    <<: *app
+    build:
+      context: ../..
+      dockerfile: project-platform/deploy/Dockerfile
+    environment:
+      JWT_SECRET: ${JWT_SECRET:?set JWT_SECRET in .env}
+      KEY_PEPPER: ${KEY_PEPPER:?set KEY_PEPPER in .env}
+      DEMO_PASSWORD: ${DEMO_PASSWORD:?set DEMO_PASSWORD in .env}
+      DATABASE_URL: postgresql://anhti:${POSTGRES_PASSWORD:?set POSTGRES_PASSWORD in .env}@postgres:5432/anhti
+      REDIS_URL: redis://redis:6379/0
+      PROVIDER_PRIMARY_URL: ${PROVIDER_PRIMARY_URL:-http://provider-primary:8000}
+      PROVIDER_SECONDARY_URL: ${PROVIDER_SECONDARY_URL:-http://provider-secondary:8000}
+      PROVIDER_TIMEOUT_S: "5"
+      CANARY_PERCENT: ${CANARY_PERCENT:-0}
+      BREAKER_COOLDOWN_S: ${BREAKER_COOLDOWN_S:-30}
+      TRACE_FILE: /tmp/traces.jsonl
+    ports:
+      - "127.0.0.1:${API_PORT:-5751}:8000"
+    depends_on:
+      postgres:
+        condition: service_healthy
+      redis:
+        condition: service_healthy
+      provider-primary:
+        condition: service_healthy
+      provider-secondary:
+        condition: service_healthy
+
+  provider-primary:
+    <<: *app
+    image: m05c15-platform:1
+    command: ["python", "/srv/platform/fake_provider.py", "--host", "0.0.0.0", "--port", "8000"]
+    environment:
+      FAKE_SEED: "42"
+      FAKE_TIME_SCALE: ${FAKE_TIME_SCALE:-0.05}
+      FAKE_FAULTS: ${PRIMARY_FAULTS:-{}}
+    ports:
+      - "127.0.0.1:5752:8000"
+    healthcheck:
+      test: ["CMD", "python", "-c", "import urllib.request; urllib.request.urlopen('http://127.0.0.1:8000/health')"]
+      interval: 3s
+      timeout: 3s
+      retries: 10
+
+  provider-secondary:
+    <<: *app
+    command: ["python", "/srv/platform/fake_provider.py", "--host", "0.0.0.0", "--port", "8000"]
+    environment:
+      FAKE_SEED: "43"
+      FAKE_TIME_SCALE: ${FAKE_TIME_SCALE:-0.05}
+    ports:
+      - "127.0.0.1:5753:8000"
+    healthcheck:
+      test: ["CMD", "python", "-c", "import urllib.request; urllib.request.urlopen('http://127.0.0.1:8000/health')"]
+      interval: 3s
+      timeout: 3s
+      retries: 10
+
+  postgres:
+    image: pgvector/pgvector:pg17
+    restart: unless-stopped
+    environment:
+      POSTGRES_USER: anhti
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:?set POSTGRES_PASSWORD in .env}
+      POSTGRES_DB: anhti
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+    ports:
+      - "127.0.0.1:5754:5432"
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U anhti -d anhti"]
+      interval: 2s
+      timeout: 3s
+      retries: 20
+
+  redis:
+    image: redis:7-alpine
+    restart: unless-stopped
+    command: ["redis-server", "--appendonly", "yes"]
+    volumes:
+      - redisdata:/data
+    ports:
+      - "127.0.0.1:5755:6379"
+    healthcheck:
+      test: ["CMD", "redis-cli", "ping"]
+      interval: 2s
+      timeout: 3s
+      retries: 20
+
+  prometheus:
+    image: prom/prometheus:v3.15.1
+    restart: unless-stopped
+    volumes:
+      - ./prometheus.yml:/etc/prometheus/prometheus.yml:ro
+      - ./alerts.yml:/etc/prometheus/alerts.yml:ro
+    ports:
+      - "127.0.0.1:5756:9090"
+    depends_on:
+      - api
+
+volumes:
+  caddydata:
+  pgdata:
+  redisdata:

@@ -1,0 +1,20 @@
+{
+  "fake": {
+    "base_url": "http://127.0.0.1:5620/v1",
+    "model": "fake-small",
+    "api_key": "demo",
+    "extra": {}
+  },
+  "ollama": {
+    "base_url": "http://localhost:11434/v1",
+    "model": "qwen3:1.7b",
+    "api_key": "ollama",
+    "extra": {"reasoning_effort": "none"}
+  },
+  "vllm": {
+    "base_url": "http://localhost:8000/v1",
+    "model": "Qwen/Qwen3-1.7B",
+    "api_key": "token-abc123",
+    "extra": {}
+  }
+}

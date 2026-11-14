@@ -1,0 +1,27 @@
+name: ci
+
+on:
+  push:
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@main
+      - run: pytest -q
+
+  eval-gate:
+    needs: [test]
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@main
+      - run: python -m evals.gate --candidate candidate.json
+        continue-on-error: true
+
+  deploy:
+    needs: [test]
+    runs-on: ubuntu-latest
+    steps:
+      - run: |
+          echo "${{ secrets.DEPLOY_SSH_KEY }}" > key
+          ssh -i key deploy@vm "cd /srv/anhti-ai && ./deploy.sh"

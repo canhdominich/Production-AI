@@ -1,0 +1,38 @@
+groups:
+  - name: anhti-slo
+    rules:
+      - alert: ErrorBudgetFastBurn
+        expr: |
+          (sum(rate(anhti_requests_total{status!="ok"}[5m])) / sum(rate(anhti_requests_total[5m])) > 0.144)
+          and
+          (sum(rate(anhti_requests_total{status!="ok"}[1h])) / sum(rate(anhti_requests_total[1h])) > 0.144)
+        for: 2m
+        labels:
+          severity: page
+        annotations:
+          summary: "SLO 99 percent over 30 days is burning 14.4 times too fast"
+          runbook: "docs/runbook.md#error-budget-fast-burn"
+      - alert: LatencyP95High
+        expr: histogram_quantile(0.95, sum by (le) (rate(anhti_request_seconds_bucket[5m]))) > 2.5
+        for: 5m
+        labels:
+          severity: ticket
+        annotations:
+          summary: "p95 gateway latency above 2.5 seconds"
+          runbook: "docs/runbook.md#latency-high"
+      - alert: FallbackShareHigh
+        expr: sum(rate(anhti_fallback_total[5m])) / sum(rate(anhti_requests_total[5m])) > 0.2
+        for: 5m
+        labels:
+          severity: ticket
+        annotations:
+          summary: "More than 20 percent of calls are served by the fallback provider"
+          runbook: "docs/runbook.md#primary-provider-down"
+      - alert: CanaryQualityDrop
+        expr: anhti_quality_score{prompt_version="v2"} < 0.8
+        for: 10m
+        labels:
+          severity: page
+        annotations:
+          summary: "Canary prompt scores below 0.8 on the online judge"
+          runbook: "docs/runbook.md#canary-rollback"

@@ -1,0 +1,103 @@
+{
+  "company": "Giao Hang Anh Ti",
+  "note": "Fictional branches of a fictional company. Budgets, limits and keys are teaching values, not real.",
+  "budget_currency": "USD",
+  "roles": {
+    "cskh_agent": {"features": ["chat"], "max_tier": "medium"},
+    "branch_lead": {"features": ["chat", "knowledge_assistant"], "max_tier": "large"},
+    "branch_manager": {"features": ["chat", "knowledge_assistant", "weekly_report_agent"], "max_tier": "large"},
+    "integration": {"features": ["chat", "knowledge_assistant"], "max_tier": "medium"}
+  },
+  "tenants": [
+    {
+      "tenant_id": "br-dau-pho",
+      "name": "Chi nhanh Dau Pho",
+      "district": "Dau Pho",
+      "plan": "pro",
+      "monthly_budget_usd": 400.0,
+      "rate_limit_rpm": 120,
+      "traffic_share": 0.30,
+      "allowed_features": ["chat", "knowledge_assistant", "weekly_report_agent"],
+      "max_tier": "large",
+      "api_key": "demo-key-dau-pho",
+      "users": [
+        {"user_id": "dp-01", "name": "Ha", "role": "cskh_agent"},
+        {"user_id": "dp-02", "name": "Lan", "role": "branch_lead"},
+        {"user_id": "dp-03", "name": "Minh", "role": "branch_manager"},
+        {"user_id": "dp-int", "name": "Dau Pho order app", "role": "integration"}
+      ]
+    },
+    {
+      "tenant_id": "br-khu-cong-nghiep",
+      "name": "Chi nhanh Khu Cong Nghiep",
+      "district": "Khu Cong Nghiep",
+      "plan": "pro",
+      "monthly_budget_usd": 300.0,
+      "rate_limit_rpm": 90,
+      "traffic_share": 0.25,
+      "allowed_features": ["chat", "knowledge_assistant", "weekly_report_agent"],
+      "max_tier": "large",
+      "api_key": "demo-key-khu-cong-nghiep",
+      "users": [
+        {"user_id": "kc-01", "name": "An", "role": "cskh_agent"},
+        {"user_id": "kc-02", "name": "Binh", "role": "branch_lead"},
+        {"user_id": "kc-03", "name": "Lan", "role": "branch_manager"},
+        {"user_id": "kc-int", "name": "Khu Cong Nghiep order app", "role": "integration"}
+      ]
+    },
+    {
+      "tenant_id": "br-cau-go",
+      "name": "Chi nhanh Cau Go",
+      "district": "Cau Go",
+      "plan": "standard",
+      "monthly_budget_usd": 150.0,
+      "rate_limit_rpm": 60,
+      "traffic_share": 0.18,
+      "allowed_features": ["chat", "knowledge_assistant", "weekly_report_agent"],
+      "max_tier": "large",
+      "api_key": "demo-key-cau-go",
+      "users": [
+        {"user_id": "cg-01", "name": "Minh", "role": "cskh_agent"},
+        {"user_id": "cg-02", "name": "Ha", "role": "branch_lead"},
+        {"user_id": "cg-03", "name": "An", "role": "branch_manager"},
+        {"user_id": "cg-int", "name": "Cau Go order app", "role": "integration"}
+      ]
+    },
+    {
+      "tenant_id": "br-xom-vui",
+      "name": "Chi nhanh Xom Vui",
+      "district": "Xom Vui",
+      "plan": "standard",
+      "monthly_budget_usd": 120.0,
+      "rate_limit_rpm": 60,
+      "traffic_share": 0.15,
+      "allowed_features": ["chat", "knowledge_assistant", "weekly_report_agent"],
+      "max_tier": "large",
+      "api_key": "demo-key-xom-vui",
+      "users": [
+        {"user_id": "xv-01", "name": "Binh", "role": "cskh_agent"},
+        {"user_id": "xv-02", "name": "Lan", "role": "branch_lead"},
+        {"user_id": "xv-03", "name": "Ha", "role": "branch_manager"},
+        {"user_id": "xv-int", "name": "Xom Vui order app", "role": "integration"}
+      ]
+    },
+    {
+      "tenant_id": "br-ben-song",
+      "name": "Chi nhanh Ben Song",
+      "district": "Ben Song",
+      "plan": "basic",
+      "monthly_budget_usd": 60.0,
+      "rate_limit_rpm": 30,
+      "traffic_share": 0.12,
+      "allowed_features": ["chat", "knowledge_assistant"],
+      "max_tier": "medium",
+      "api_key": "demo-key-ben-song",
+      "users": [
+        {"user_id": "bs-01", "name": "An", "role": "cskh_agent"},
+        {"user_id": "bs-02", "name": "Minh", "role": "branch_lead"},
+        {"user_id": "bs-int", "name": "Ben Song order app", "role": "integration"}
+      ]
+    }
+  ],
+  "budget_policy": {"soft_limit_pct": 80, "hard_limit_pct": 100}
+}

@@ -1,0 +1,26 @@
+{
+ "peak-good": {
+  "text": "{\"verdict\": \"fail\", \"reason\": \"Đơn trễ 40 phút ngày 05/12/2026 không đủ điều kiện bồi thường vì ngưỡng trễ là 45 phút, mà đơn trễ 40 phút chưa đạt tiêu chuẩn.\"}",
+  "seconds": 23.3
+ },
+ "peak-bad": {
+  "text": "{\"verdict\": \"fail\", \"reason\": \"Thông tin không chính xác. Ngưỡng trễ để được bồi thường là 30 phút, nhưng câu trả lời cho rằng 'trễ 40 phút' được bồi thường, mà tài liệu chỉ cho ngưỡng 30 phút.\"}",
+  "seconds": 9.6
+ },
+ "cap-good": {
+  "text": "{\"verdict\": \"pass\", \"reason\": \"Câu trả lời đúng với đoạn tài liệu.\"}",
+  "seconds": 6.7
+ },
+ "cap-bad": {
+  "text": "{\"verdict\": \"fail\", \"reason\": \"Hàng không khai báo giá trị được bồi thường tối đa 500.000 đồng mỗi đơn.\"}",
+  "seconds": 6.0
+ },
+ "voucher-good": {
+  "text": "{\"verdict\": \"pass\", \"reason\": \"Đoạn tài liệu xác nhận rằng voucher express có giá trị 50.000 đồng và hạn dùng 60 ngày.\"}",
+  "seconds": 9.5
+ },
+ "voucher-bad": {
+  "text": "{\"verdict\": \"fail\", \"reason\": \"Thông tin không chính xác. Voucher express có giá trị 50.000 đồng và hạn dùng 60 ngày, nhưng câu trả lời sai về giá trị và thời gian sử dụng.\"}",
+  "seconds": 8.3
+ }
+}

@@ -1,0 +1,17 @@
+services:
+  api:
+    image: anhti-ai:latest
+    ports:
+      - "8000:8000"
+    environment:
+      DATABASE_URL: postgresql://anhti:anhti123@postgres:5432/anhti
+  postgres:
+    image: pgvector/pgvector:latest
+    ports:
+      - "5432:5432"
+    environment:
+      POSTGRES_PASSWORD: anhti123
+  redis:
+    image: redis
+    ports:
+      - "6379:6379"

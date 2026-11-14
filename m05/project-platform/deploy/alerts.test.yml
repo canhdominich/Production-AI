@@ -1,0 +1,32 @@
+rule_files:
+  - alerts.yml
+
+evaluation_interval: 1m
+
+tests:
+  - interval: 1m
+    input_series:
+      - series: 'anhti_requests_total{tenant="br-dau-pho",feature="chat",status="ok"}'
+        values: '0+80x70'
+      - series: 'anhti_requests_total{tenant="br-dau-pho",feature="chat",status="server_error"}'
+        values: '0+20x70'
+    alert_rule_test:
+      - eval_time: 65m
+        alertname: ErrorBudgetFastBurn
+        exp_alerts:
+          - exp_labels:
+              severity: page
+            exp_annotations:
+              summary: "SLO 99 percent over 30 days is burning 14.4 times too fast"
+              runbook: "docs/runbook.md#error-budget-fast-burn"
+
+  - interval: 1m
+    input_series:
+      - series: 'anhti_requests_total{tenant="br-dau-pho",feature="chat",status="ok"}'
+        values: '0+95x70'
+      - series: 'anhti_requests_total{tenant="br-dau-pho",feature="chat",status="server_error"}'
+        values: '0+5x70'
+    alert_rule_test:
+      - eval_time: 65m
+        alertname: ErrorBudgetFastBurn
+        exp_alerts: []

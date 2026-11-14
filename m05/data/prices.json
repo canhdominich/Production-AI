@@ -1,0 +1,20 @@
+{
+  "illustrative": true,
+  "warning": "These prices are invented for teaching. They are NOT the price list of any real vendor and must never be used for a real budget decision.",
+  "currency": "USD",
+  "unit": "per 1,000,000 tokens",
+  "usd_to_vnd": 25000,
+  "as_of": "not applicable (invented)",
+  "how_to_replace": [
+    "1. Open the official pricing page of the vendor you actually use and write down the access date in 'as_of'.",
+    "2. Copy one entry per real model, keep the same four keys: input_per_mtok, output_per_mtok, cached_input_per_mtok, context_window.",
+    "3. Keep the three tier names small, medium, large as aliases (the 'tiers' map) so gateway code and tests do not change; only the model names behind the tiers change.",
+    "4. Set 'illustrative' to false only after step 1, and commit the file to your own repo, not to the shared base."
+  ],
+  "tiers": {"small": "fake-small", "medium": "fake-medium", "large": "fake-large"},
+  "models": {
+    "fake-small": {"tier": "small", "input_per_mtok": 0.15, "output_per_mtok": 0.60, "cached_input_per_mtok": 0.04, "context_window": 32000, "max_output_tokens": 4096},
+    "fake-medium": {"tier": "medium", "input_per_mtok": 0.75, "output_per_mtok": 3.00, "cached_input_per_mtok": 0.20, "context_window": 128000, "max_output_tokens": 8192},
+    "fake-large": {"tier": "large", "input_per_mtok": 5.00, "output_per_mtok": 20.00, "cached_input_per_mtok": 1.25, "context_window": 200000, "max_output_tokens": 16384}
+  }
+}

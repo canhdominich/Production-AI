@@ -1,0 +1,27 @@
+{
+ "_note": "scripted pass probability per version and category, simulated",
+ "v1": {
+  "change_address": 0.9,
+  "complaint_late": 0.88,
+  "eta": 0.86,
+  "order_status": 0.92,
+  "other": 0.8,
+  "refund": 0.9
+ },
+ "v2": {
+  "change_address": 0.95,
+  "complaint_late": 0.93,
+  "eta": 0.93,
+  "order_status": 0.95,
+  "other": 0.87,
+  "refund": 0.95
+ },
+ "v3": {
+  "change_address": 0.9,
+  "complaint_late": 0.4,
+  "eta": 0.84,
+  "order_status": 0.92,
+  "other": 0.78,
+  "refund": 0.88
+ }
+}

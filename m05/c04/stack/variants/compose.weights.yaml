@@ -1,0 +1,36 @@
+name: m05c04
+
+services:
+  hub:
+    image: m05c04-app:1
+    command: ["python", "-m", "http.server", "8080", "--directory", "/hub"]
+    volumes:
+      - ${HUB_DIR}:/hub:ro
+    healthcheck:
+      test: ["CMD", "python", "-m", "app.healthcheck", "http://127.0.0.1:8080/"]
+      interval: 2s
+      timeout: 5s
+      retries: 20
+
+  model-init:
+    image: m05c04-app:1
+    restart: "no"
+    command: ["python", "-m", "app.fetch_weights", "http://hub:8080/model.bin", "/models/model.bin", "${MODEL_SHA256}"]
+    volumes:
+      - models:/models
+    depends_on:
+      hub:
+        condition: service_healthy
+
+  model-user:
+    image: m05c04-app:1
+    restart: "no"
+    command: ["python", "-c", "import os; print('model-user sees', os.path.getsize('/models/model.bin') // 10**6, 'MB read-only')"]
+    volumes:
+      - models:/models:ro
+    depends_on:
+      model-init:
+        condition: service_completed_successfully
+
+volumes:
+  models:

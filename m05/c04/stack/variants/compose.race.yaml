@@ -1,0 +1,18 @@
+name: m05c04
+
+services:
+  postgres:
+    image: pgvector/pgvector:pg17
+    environment:
+      POSTGRES_USER: anhti
+      POSTGRES_PASSWORD: anhti
+      POSTGRES_DB: anhti
+
+  migrate:
+    image: m05c04-app:1
+    restart: "no"
+    command: ["python", "-m", "app.migrate"]
+    environment:
+      DATABASE_URL: postgresql://anhti:anhti@postgres:5432/anhti
+    depends_on:
+      - postgres

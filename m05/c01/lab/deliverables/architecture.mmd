@@ -1,0 +1,31 @@
+flowchart TD
+    User["User: branch staff, order app"]
+    Caddy["Caddy: HTTPS, timeouts"]
+    API["API: auth, tenant, streaming"]
+    Gateway["Gateway: limits, usage, fallback"]
+    Worker["Worker: weekly report jobs"]
+    Redis[("Redis: queue, counters")]
+    PostgreSQL[("PostgreSQL: tenants, usage, jobs")]
+    Provider["Provider: model API"]
+    Observability["Observability: traces, metrics"]
+    User -->|HTTPS| Caddy
+    Caddy -->|reverse proxy| API
+    API -->|chat, knowledge call| Gateway
+    API -->|enqueue report job| Redis
+    API -->|job row, tenant lookup| PostgreSQL
+    Redis -->|job id| Worker
+    Worker -->|model calls| Gateway
+    Worker -->|save result| PostgreSQL
+    Gateway -->|model request| Provider
+    Gateway -->|usage_events| PostgreSQL
+    Gateway -->|rate counters| Redis
+    API -->|traces| Observability
+    Gateway -->|metrics| Observability
+    Worker -->|traces| Observability
+    classDef main fill:#DBEAFE,stroke:#2563EB,color:#1E40AF,stroke-width:2px
+    classDef input fill:#CFFAFE,stroke:#0891B2,color:#155E75,stroke-width:2px
+    classDef process fill:#EDE9FE,stroke:#8B5CF6,color:#5B21B6,stroke-width:2px
+    class User,Caddy,API,Gateway,Worker main
+    class Redis,PostgreSQL input
+    class Provider,Observability process
+    linkStyle default stroke-width:2px

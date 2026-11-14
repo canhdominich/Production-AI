@@ -1,0 +1,80 @@
+groups:
+- name: llm-slo-recording
+  interval: 1m
+  rules:
+  - record: llm:error_ratio_rate5m
+    expr: sum(rate(llm_requests_total{status="error"}[5m])) / sum(rate(llm_requests_total[5m]))
+  - record: llm:error_ratio_rate30m
+    expr: sum(rate(llm_requests_total{status="error"}[30m])) / sum(rate(llm_requests_total[30m]))
+  - record: llm:error_ratio_rate1h
+    expr: sum(rate(llm_requests_total{status="error"}[1h])) / sum(rate(llm_requests_total[1h]))
+  - record: llm:error_ratio_rate2h
+    expr: sum(rate(llm_requests_total{status="error"}[2h])) / sum(rate(llm_requests_total[2h]))
+  - record: llm:error_ratio_rate6h
+    expr: sum(rate(llm_requests_total{status="error"}[6h])) / sum(rate(llm_requests_total[6h]))
+  - record: llm:error_ratio_rate1d
+    expr: sum(rate(llm_requests_total{status="error"}[1d])) / sum(rate(llm_requests_total[1d]))
+  - record: llm:error_ratio_rate3d
+    expr: sum(rate(llm_requests_total{status="error"}[3d])) / sum(rate(llm_requests_total[3d]))
+  - record: llm:eval_fail_ratio_rate1d
+    expr: sum(increase(llm_eval_samples_total{verdict="fail"}[1d])) / sum(increase(llm_eval_samples_total[1d]))
+  - record: llm:eval_fail_ratio_rate3d
+    expr: sum(increase(llm_eval_samples_total{verdict="fail"}[3d])) / sum(increase(llm_eval_samples_total[3d]))
+- name: llm-slo-alerts
+  interval: 1m
+  rules:
+  - alert: LLMAvailabilityFastBurn
+    expr: |
+      (llm:error_ratio_rate1h > (14.4 * 0.005) and llm:error_ratio_rate5m > (14.4 * 0.005))
+      or
+      (llm:error_ratio_rate6h > (6 * 0.005) and llm:error_ratio_rate30m > (6 * 0.005))
+    for: 2m
+    labels:
+      severity: page
+      slo: availability
+    annotations:
+      summary: Error budget is burning fast, users see failures now
+      runbook: docs/runbooks/llm-slo.md
+  - alert: LLMAvailabilitySlowBurn
+    expr: |
+      (llm:error_ratio_rate1d > (3 * 0.005) and llm:error_ratio_rate2h > (3 * 0.005))
+      or
+      (llm:error_ratio_rate3d > (1 * 0.005) and llm:error_ratio_rate6h > (1 * 0.005))
+    for: 15m
+    labels:
+      severity: ticket
+      slo: availability
+    annotations:
+      summary: Error budget is leaking slowly
+      runbook: docs/runbooks/llm-slo.md
+  - alert: LLMQualityBurn
+    expr: |
+      llm:eval_fail_ratio_rate3d > (1 * 0.3) and llm:eval_fail_ratio_rate1d > (1 * 0.3)
+      and sum(increase(llm_eval_samples_total[1d])) >= 20
+    for: 1h
+    labels:
+      severity: ticket
+      slo: quality
+    annotations:
+      summary: Sampled answers fail more often than the quality SLO allows
+      runbook: docs/runbooks/llm-slo.md
+  - alert: LLMEvalPipelineStalled
+    expr: |
+      sum(increase(llm_eval_samples_total[1d])) == 0
+    for: 30m
+    labels:
+      severity: ticket
+      slo: quality
+    annotations:
+      summary: No answers were judged in the last day
+      runbook: docs/runbooks/llm-slo.md
+  - alert: LLMInputDrift
+    expr: |
+      max by (feature) (llm_input_psi) > 0.25
+    for: 1d
+    labels:
+      severity: ticket
+      slo: drift
+    annotations:
+      summary: The question mix moved away from the reference week
+      runbook: docs/runbooks/llm-slo.md

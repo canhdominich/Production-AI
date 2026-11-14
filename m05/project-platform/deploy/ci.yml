@@ -1,0 +1,53 @@
+name: anhti-platform
+
+on:
+  pull_request:
+  push:
+    branches: [main]
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: astral-sh/setup-uv@v6
+      - run: uv sync
+      - name: Unit, API and safety tests (fake provider)
+        working-directory: m05/project-platform
+        run: PYTHONPATH=solution:../.. uv run pytest -q tests
+
+  eval-gate:
+    needs: test
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: astral-sh/setup-uv@v6
+      - run: uv sync
+      - name: Evaluation gate on the candidate prompt
+        working-directory: m05/project-platform
+        run: >
+          PYTHONPATH=solution uv run python -m anhti_platform.evalgate
+          --cases evals/cases.jsonl --rates evals/sim_rates.json --thresholds evals/thresholds.toml
+          --baseline v1 --candidate ${{ vars.CANDIDATE_PROMPT || 'v2' }} | tee eval-report.json
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: eval-report
+          path: m05/project-platform/eval-report.json
+
+  build:
+    needs: eval-gate
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Build image
+        run: docker build -f m05/project-platform/deploy/Dockerfile -t m05c15-platform:${{ github.sha }} m05
+
+  deploy:
+    needs: build
+    if: github.ref == 'refs/heads/main'
+    runs-on: ubuntu-latest
+    environment: production
+    steps:
+      - name: Roll out with a canary share and smoke test
+        run: ssh deploy@${{ secrets.DEPLOY_HOST }} "cd /opt/anhti && CANARY_PERCENT=10 docker compose up -d && ./smoke.sh"

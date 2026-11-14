@@ -1,0 +1,12 @@
+{
+  "illustrative": true,
+  "warning": "Derived from a CPU measurement and an assumed VM price; invented for teaching, not a real quote.",
+  "currency": "USD",
+  "unit": "per 1,000,000 tokens",
+  "usd_to_vnd": 25000,
+  "as_of": "not applicable (invented)",
+  "tiers": {"small": "qwen3:1.7b", "medium": "qwen3:1.7b", "large": "qwen3:1.7b"},
+  "models": {
+    "qwen3:1.7b": {"tier": "small", "input_per_mtok": 2.0, "output_per_mtok": 9.5, "cached_input_per_mtok": 2.0, "context_window": 32000, "max_output_tokens": 4096}
+  }
+}

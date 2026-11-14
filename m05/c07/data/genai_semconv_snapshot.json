@@ -1,0 +1,193 @@
+{
+ "source": "https://github.com/open-telemetry/semantic-conventions-genai (docs/registry/attributes/gen-ai.md and docs/gen-ai/*.md)",
+ "commit": "e6658f14c9",
+ "read_on": "2026-11-14",
+ "status": "Development (experimental): names may still change",
+ "operations": [
+  "chat",
+  "create_agent",
+  "create_memory",
+  "create_memory_store",
+  "delete_memory",
+  "delete_memory_store",
+  "embeddings",
+  "execute_tool",
+  "fetch_response",
+  "generate_content",
+  "invoke_agent",
+  "invoke_runner",
+  "invoke_workflow",
+  "plan",
+  "realtime_inference",
+  "retrieval",
+  "search_memory",
+  "text_completion",
+  "update_memory",
+  "upsert_memory",
+  "user_speech"
+ ],
+ "gen_ai_attributes": [
+  "gen_ai.agent.description",
+  "gen_ai.agent.id",
+  "gen_ai.agent.name",
+  "gen_ai.agent.version",
+  "gen_ai.conversation.compacted",
+  "gen_ai.conversation.id",
+  "gen_ai.data_source.id",
+  "gen_ai.embeddings.dimension.count",
+  "gen_ai.evaluation.explanation",
+  "gen_ai.evaluation.name",
+  "gen_ai.evaluation.score.label",
+  "gen_ai.evaluation.score.value",
+  "gen_ai.input.messages",
+  "gen_ai.input.messages_ref",
+  "gen_ai.main_agent.description",
+  "gen_ai.main_agent.id",
+  "gen_ai.main_agent.name",
+  "gen_ai.memory.query.text",
+  "gen_ai.memory.record.count",
+  "gen_ai.memory.record.id",
+  "gen_ai.memory.records",
+  "gen_ai.memory.store.id",
+  "gen_ai.operation.name",
+  "gen_ai.output.messages",
+  "gen_ai.output.messages_ref",
+  "gen_ai.output.type",
+  "gen_ai.prompt.name",
+  "gen_ai.prompt.variable",
+  "gen_ai.prompt.version",
+  "gen_ai.provider.name",
+  "gen_ai.realtime_session.id",
+  "gen_ai.request.choice.count",
+  "gen_ai.request.encoding_formats",
+  "gen_ai.request.frequency_penalty",
+  "gen_ai.request.max_tokens",
+  "gen_ai.request.model",
+  "gen_ai.request.presence_penalty",
+  "gen_ai.request.previous_response.id",
+  "gen_ai.request.reasoning.level",
+  "gen_ai.request.seed",
+  "gen_ai.request.stop_sequences",
+  "gen_ai.request.stream",
+  "gen_ai.request.stream_cursor",
+  "gen_ai.request.temperature",
+  "gen_ai.request.top_k",
+  "gen_ai.request.top_p",
+  "gen_ai.response.finish_reasons",
+  "gen_ai.response.id",
+  "gen_ai.response.model",
+  "gen_ai.response.status",
+  "gen_ai.response.time_to_first_chunk",
+  "gen_ai.retrieval.documents",
+  "gen_ai.retrieval.query.text",
+  "gen_ai.retrieval.top_k",
+  "gen_ai.skill.description",
+  "gen_ai.skill.name",
+  "gen_ai.skill.resource.name",
+  "gen_ai.skill.source.uri",
+  "gen_ai.system_instructions",
+  "gen_ai.system_instructions_ref",
+  "gen_ai.token.modality",
+  "gen_ai.tool.call.arguments",
+  "gen_ai.tool.call.id",
+  "gen_ai.tool.call.result",
+  "gen_ai.tool.definitions",
+  "gen_ai.tool.definitions_ref",
+  "gen_ai.tool.description",
+  "gen_ai.tool.name",
+  "gen_ai.tool.type",
+  "gen_ai.transfer.mode",
+  "gen_ai.transfer.target.name",
+  "gen_ai.usage.audio.cache_read.input_tokens",
+  "gen_ai.usage.audio.input_tokens",
+  "gen_ai.usage.audio.output_tokens",
+  "gen_ai.usage.cache_read.input_tokens",
+  "gen_ai.usage.cache_write.input_tokens",
+  "gen_ai.usage.image.cache_read.input_tokens",
+  "gen_ai.usage.image.input_tokens",
+  "gen_ai.usage.image.output_tokens",
+  "gen_ai.usage.input_tokens",
+  "gen_ai.usage.output_tokens",
+  "gen_ai.usage.reasoning.output_tokens",
+  "gen_ai.usage.text.cache_read.input_tokens",
+  "gen_ai.usage.text.input_tokens",
+  "gen_ai.usage.text.output_tokens"
+ ],
+ "other_known": [
+  "error.type",
+  "server.address",
+  "server.port",
+  "exception.type",
+  "exception.message",
+  "exception.stacktrace"
+ ],
+ "spans": {
+  "chat": {
+   "kind": "CLIENT",
+   "name": "{operation} {request.model}",
+   "required": [
+    "gen_ai.operation.name",
+    "gen_ai.provider.name"
+   ]
+  },
+  "embeddings": {
+   "kind": "CLIENT",
+   "name": "{operation} {request.model}",
+   "required": [
+    "gen_ai.operation.name",
+    "gen_ai.provider.name"
+   ]
+  },
+  "retrieval": {
+   "kind": "INTERNAL",
+   "name": "{operation}",
+   "required": [
+    "gen_ai.operation.name"
+   ]
+  },
+  "invoke_agent": {
+   "kind": "INTERNAL",
+   "name": "{operation} {agent.name}",
+   "required": [
+    "gen_ai.operation.name"
+   ]
+  },
+  "execute_tool": {
+   "kind": "INTERNAL",
+   "name": "{operation} {tool.name}",
+   "required": [
+    "gen_ai.operation.name",
+    "gen_ai.tool.name"
+   ]
+  }
+ },
+ "opt_in_content": [
+  "gen_ai.input.messages",
+  "gen_ai.output.messages",
+  "gen_ai.system_instructions",
+  "gen_ai.tool.call.arguments",
+  "gen_ai.tool.call.result",
+  "gen_ai.retrieval.query.text",
+  "gen_ai.retrieval.documents",
+  "gen_ai.memory.query.text",
+  "gen_ai.memory.records"
+ ],
+ "metrics": [
+  "gen_ai.client.inference.duration",
+  "gen_ai.client.inference.time_to_first_chunk",
+  "gen_ai.client.inference.time_per_output_chunk",
+  "gen_ai.client.inference.usage.input_tokens",
+  "gen_ai.client.inference.usage.output_tokens",
+  "gen_ai.client.inference.operation.input_tokens",
+  "gen_ai.client.inference.operation.output_tokens",
+  "gen_ai.execute_tool.duration",
+  "gen_ai.retrieval.duration",
+  "gen_ai.client.invoke_agent.duration"
+ ],
+ "older_names": {
+  "gen_ai.system": "gen_ai.provider.name",
+  "gen_ai.usage.prompt_tokens": "gen_ai.usage.input_tokens",
+  "gen_ai.usage.completion_tokens": "gen_ai.usage.output_tokens",
+  "gen_ai.usage.cache_creation.input_tokens": "gen_ai.usage.cache_write.input_tokens"
+ }
+}

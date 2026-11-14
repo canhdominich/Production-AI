@@ -1,0 +1,274 @@
+{
+  "uid": "anhti-llm-prod",
+  "title": "Giao Hang Anh Ti: AI service in production",
+  "schemaVersion": 42,
+  "version": 1,
+  "tags": [
+    "anhti",
+    "llm",
+    "slo"
+  ],
+  "time": {
+    "from": "now-6h",
+    "to": "now"
+  },
+  "refresh": "1m",
+  "panels": [
+    {
+      "id": 1,
+      "type": "timeseries",
+      "title": "Request rate by feature",
+      "datasource": {
+        "type": "prometheus",
+        "uid": "prom-local"
+      },
+      "gridPos": {
+        "h": 8,
+        "w": 12,
+        "x": 0,
+        "y": 0
+      },
+      "fieldConfig": {
+        "defaults": {
+          "unit": "reqps"
+        },
+        "overrides": []
+      },
+      "targets": [
+        {
+          "refId": "A",
+          "datasource": {
+            "type": "prometheus",
+            "uid": "prom-local"
+          },
+          "expr": "sum by (feature) (rate(llm_requests_total[5m]))",
+          "legendFormat": "{{feature}}"
+        }
+      ]
+    },
+    {
+      "id": 2,
+      "type": "timeseries",
+      "title": "Error ratio, 5 min window",
+      "datasource": {
+        "type": "prometheus",
+        "uid": "prom-local"
+      },
+      "gridPos": {
+        "h": 8,
+        "w": 12,
+        "x": 12,
+        "y": 0
+      },
+      "fieldConfig": {
+        "defaults": {
+          "unit": "percentunit"
+        },
+        "overrides": []
+      },
+      "targets": [
+        {
+          "refId": "A",
+          "datasource": {
+            "type": "prometheus",
+            "uid": "prom-local"
+          },
+          "expr": "llm:error_ratio_rate5m",
+          "legendFormat": ""
+        }
+      ]
+    },
+    {
+      "id": 3,
+      "type": "timeseries",
+      "title": "p95 latency by feature",
+      "datasource": {
+        "type": "prometheus",
+        "uid": "prom-local"
+      },
+      "gridPos": {
+        "h": 8,
+        "w": 12,
+        "x": 0,
+        "y": 8
+      },
+      "fieldConfig": {
+        "defaults": {
+          "unit": "s"
+        },
+        "overrides": []
+      },
+      "targets": [
+        {
+          "refId": "A",
+          "datasource": {
+            "type": "prometheus",
+            "uid": "prom-local"
+          },
+          "expr": "histogram_quantile(0.95, sum by (le, feature) (rate(llm_request_duration_seconds_bucket[5m])))",
+          "legendFormat": "{{feature}}"
+        }
+      ]
+    },
+    {
+      "id": 4,
+      "type": "timeseries",
+      "title": "Answers cut at max_tokens",
+      "datasource": {
+        "type": "prometheus",
+        "uid": "prom-local"
+      },
+      "gridPos": {
+        "h": 8,
+        "w": 12,
+        "x": 12,
+        "y": 8
+      },
+      "fieldConfig": {
+        "defaults": {
+          "unit": "percentunit"
+        },
+        "overrides": []
+      },
+      "targets": [
+        {
+          "refId": "A",
+          "datasource": {
+            "type": "prometheus",
+            "uid": "prom-local"
+          },
+          "expr": "sum(rate(llm_finish_total{reason=\"length\"}[15m])) / sum(rate(llm_finish_total[15m]))",
+          "legendFormat": ""
+        }
+      ]
+    },
+    {
+      "id": 5,
+      "type": "timeseries",
+      "title": "Cost per hour by tenant",
+      "datasource": {
+        "type": "prometheus",
+        "uid": "prom-local"
+      },
+      "gridPos": {
+        "h": 8,
+        "w": 12,
+        "x": 0,
+        "y": 16
+      },
+      "fieldConfig": {
+        "defaults": {
+          "unit": "currencyUSD"
+        },
+        "overrides": []
+      },
+      "targets": [
+        {
+          "refId": "A",
+          "datasource": {
+            "type": "prometheus",
+            "uid": "prom-local"
+          },
+          "expr": "sum by (tenant) (increase(llm_cost_usd_total[1h]))",
+          "legendFormat": ""
+        }
+      ]
+    },
+    {
+      "id": 6,
+      "type": "timeseries",
+      "title": "Sampled pass rate, 3 days",
+      "datasource": {
+        "type": "prometheus",
+        "uid": "prom-local"
+      },
+      "gridPos": {
+        "h": 8,
+        "w": 12,
+        "x": 12,
+        "y": 16
+      },
+      "fieldConfig": {
+        "defaults": {
+          "unit": "percentunit"
+        },
+        "overrides": []
+      },
+      "targets": [
+        {
+          "refId": "A",
+          "datasource": {
+            "type": "prometheus",
+            "uid": "prom-local"
+          },
+          "expr": "sum(increase(llm_eval_samples_total{verdict=\"pass\"}[3d])) / sum(increase(llm_eval_samples_total[3d]))",
+          "legendFormat": ""
+        }
+      ]
+    },
+    {
+      "id": 7,
+      "type": "timeseries",
+      "title": "Burn rate, 1 hour window",
+      "datasource": {
+        "type": "prometheus",
+        "uid": "prom-local"
+      },
+      "gridPos": {
+        "h": 8,
+        "w": 12,
+        "x": 0,
+        "y": 24
+      },
+      "fieldConfig": {
+        "defaults": {
+          "unit": "none"
+        },
+        "overrides": []
+      },
+      "targets": [
+        {
+          "refId": "A",
+          "datasource": {
+            "type": "prometheus",
+            "uid": "prom-local"
+          },
+          "expr": "llm:error_ratio_rate1h / 0.005",
+          "legendFormat": ""
+        }
+      ]
+    },
+    {
+      "id": 8,
+      "type": "timeseries",
+      "title": "Input drift (PSI)",
+      "datasource": {
+        "type": "prometheus",
+        "uid": "prom-local"
+      },
+      "gridPos": {
+        "h": 8,
+        "w": 12,
+        "x": 12,
+        "y": 24
+      },
+      "fieldConfig": {
+        "defaults": {
+          "unit": "none"
+        },
+        "overrides": []
+      },
+      "targets": [
+        {
+          "refId": "A",
+          "datasource": {
+            "type": "prometheus",
+            "uid": "prom-local"
+          },
+          "expr": "max by (feature) (llm_input_psi)",
+          "legendFormat": "{{feature}}"
+        }
+      ]
+    }
+  ]
+}

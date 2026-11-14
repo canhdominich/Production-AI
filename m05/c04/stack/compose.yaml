@@ -1,0 +1,105 @@
+name: m05c04
+
+x-app: &app
+  image: m05c04-app:1
+  restart: unless-stopped
+  environment: &app-env
+    DATABASE_URL: postgresql://anhti:${POSTGRES_PASSWORD:-anhti}@postgres:5432/anhti
+    REDIS_URL: redis://redis:6379/0
+    PROVIDER_URL: http://provider:8000
+
+services:
+  postgres:
+    image: pgvector/pgvector:pg17
+    restart: unless-stopped
+    environment:
+      POSTGRES_USER: anhti
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-anhti}
+      POSTGRES_DB: anhti
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+    ports:
+      - "127.0.0.1:5642:5432"
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U anhti -d anhti"]
+      interval: 2s
+      timeout: 3s
+      retries: 20
+
+  redis:
+    image: redis:7-alpine
+    restart: unless-stopped
+    command: ["redis-server", "--appendonly", "yes"]
+    volumes:
+      - redisdata:/data
+    ports:
+      - "127.0.0.1:5643:6379"
+    healthcheck:
+      test: ["CMD", "redis-cli", "ping"]
+      interval: 2s
+      timeout: 3s
+      retries: 20
+
+  provider:
+    <<: *app
+    command: ["python", "/srv/platform/fake_provider.py", "--host", "0.0.0.0", "--port", "8000"]
+    environment:
+      FAKE_SEED: "42"
+      FAKE_TIME_SCALE: "0.05"
+    ports:
+      - "127.0.0.1:5644:8000"
+    healthcheck:
+      test: ["CMD", "python", "-m", "app.healthcheck", "http://127.0.0.1:8000/health"]
+      interval: 3s
+      timeout: 3s
+      retries: 10
+
+  migrate:
+    <<: *app
+    restart: "no"
+    command: ["python", "-m", "app.migrate"]
+    depends_on:
+      postgres:
+        condition: service_healthy
+
+  api:
+    <<: *app
+    build:
+      context: ../..
+      dockerfile: c04/stack/Dockerfile
+    ports:
+      - "127.0.0.1:5641:8000"
+    depends_on:
+      migrate:
+        condition: service_completed_successfully
+      redis:
+        condition: service_healthy
+      provider:
+        condition: service_healthy
+    healthcheck:
+      test: ["CMD", "python", "-m", "app.healthcheck", "http://127.0.0.1:8000/ready"]
+      interval: 3s
+      timeout: 3s
+      retries: 10
+      start_period: 5s
+
+  worker:
+    <<: *app
+    command: ["python", "-m", "app.worker"]
+    depends_on:
+      migrate:
+        condition: service_completed_successfully
+      redis:
+        condition: service_healthy
+      provider:
+        condition: service_healthy
+    healthcheck:
+      test: ["CMD", "python", "-m", "app.healthcheck", "worker"]
+      interval: 5s
+      timeout: 3s
+      retries: 3
+      start_period: 5s
+
+volumes:
+  pgdata:
+  redisdata:

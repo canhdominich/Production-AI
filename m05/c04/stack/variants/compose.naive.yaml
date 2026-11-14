@@ -1,0 +1,28 @@
+services:
+  postgres:
+    image: pgvector/pgvector:latest
+    environment:
+      POSTGRES_PASSWORD: anhti
+    ports:
+      - "5432:5432"
+
+  redis:
+    image: redis
+    ports:
+      - "6379:6379"
+
+  api:
+    build: .
+    ports:
+      - "8000:8000"
+    depends_on:
+      - postgres
+      - redis
+    restart: unless-stopped
+
+  worker:
+    build: .
+    command: ["python", "-m", "app.worker"]
+    depends_on:
+      - api
+    restart: unless-stopped
